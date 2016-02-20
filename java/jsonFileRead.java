@@ -1,3 +1,8 @@
+// for JSONParser:
+// gradle: compile 'com.googlecode.json-simple:json-simple:1.1'
+// import org.json.simple.parser.JSONParser
+
+
 public class jsonFileRead {
 
 	public static void main(String[] args) {
