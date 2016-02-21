@@ -1,9 +1,9 @@
-// example background thread in an an activity 
+// example dedicated threads in an an activity 
 // threads not recommened for long-term acesses
 
+// cons: thread creation/breakdown is resource intensive
+// dedicated tasks are not the best choice for background tasks for responsive user experience
 
-// Activity.runOnUiThread method
-// View.post
 
 public class MyActivity extends Activity {
 
