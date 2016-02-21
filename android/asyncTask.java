@@ -1,5 +1,10 @@
 // example of an asynctask implementation
 // async task recommended for thread/UI responsiveness
+
+// choice of AsyncTask execution behavior: 
+// in main activity thread call:
+// asyncworker.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR); sequentially
+// asyncworkier.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR); in parallel
 /*
 Phases of Async Task:
 - onPreExecute: retrieve info from UI on main thread
