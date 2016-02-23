@@ -1,0 +1,67 @@
+<!-- styles.xml file in typical android project 
+Material design theme requires API >= 21
+
+Ex. themes: Theme.Material.Light, Theme.Material.Light.NoActionBar 
+
+Themes with backward compatibility: themes in the AppCompat (API 7+)
+f.e Theme.AppCompat
+
+For maintaining compatibility, make folders (for <21 and >=21):
+- drawable, drawable-v21
+- values, values-v21
+- layout, layout-v21
+
+-->
+
+
+<!-- v21 -->
+<resources>
+	<style name="MaterialTheme" parent="ParentMaterialTheme">
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">@color/coloPrimaryDark</item>
+		<item name="colorAccent">@color/colorAccent</item>
+	</style>
+</resources>
+
+<!-- non-v21 -->
+<resources>
+
+	<!-- base application theme, apply this as main theme for app in manifest file 
+	parent is the ParentMaterialTheme, apply custom styles here  -->
+	<style name="MaterialTheme" parent="ParentMaterialTheme">
+		<!-- 
+			color palette attributes:
+			notification bar: colorPrimaryDark
+			Toolbar: colorPrimary
+			Title text on toolbar: textColorPrimary
+			App body color: windowBackground
+			Highlight Ripple on Buttons: colorControlHighlight
+			Checkbox off: colorControlNormal
+			Checkbox on/ EditText inputs: colorcontrolActivated 
+			Button colors: colorButtonNormal
+		-->
+		<!-- applies #1ef1ab color for off checkboxes -->
+		<item name="colorControlNormal">#1ef1ab</item>
+	</style>
+
+
+	<!-- Parent Theme --> 
+	<style name="ParentMaterialTheme" parent="@android:style/Theme.AppCompat.Light.NoActionBar">
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">@color/coloPrimaryDark</item>
+		<item name="colorAccent">@color/colorAccent</item>
+	</style>
+</resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
