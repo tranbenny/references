@@ -1,0 +1,48 @@
+<!--
+implementation of a custom toolbar, make sure to set custom toolbar in Activity files
+
+make sure parent theme has NoActionBar to the end of it
+- elevation attribute: requires api >= 21
+
+- applying icons/featuers to popover menu
+for toolbar only: app:showAsAction:"never"
+for toolbar and popover menu: app:showAsAction"always
+ -->
+
+<!-- activity layout file -->
+<LinearLayout>
+
+	<android.support.v7.widget.Toolbar
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/color_primary"
+		android:minHeight="?attr/actionBarSize"
+		android:elevation="5dp"
+		app:theme="@style/ToolbarTheme"
+		app:popuptheme="@style/PopupTheme" />
+
+		
+</LinearLayout>
+
+
+<!-- toolbar theme in styles.xml -->
+<style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+	<item name="android:textColorPrimary">@android:color/white</item>
+</style>
+
+
+<style name="PopupTheme" parent="ThemeOverlay.AppCompat.Light">
+	<item name="android:textColorPrimary">@android:color/black</item>
+</style>
+
+
+<!-- menu.xml file, can create custom popover menu items in toolbar -->
+
+<menu>
+	<item
+		android:id="@id/search"
+		android:icon="@drawable/ic_search"
+		android:orderInCategory="100"
+		android:title="Search"
+		app:showAsAction="always" />
+</menu>
