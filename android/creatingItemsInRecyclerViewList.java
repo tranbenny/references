@@ -5,6 +5,14 @@ java code for creating a scrollable list using recycler/card views
 - create a custom adapter 
 - attach adapter to recycler view
 
+to add a row:
+- notifyItemInserted(position) in adapter
+to delete a row:
+- notifyItemRemoved(position) in adapter
+
+additional methods:
+- notifyItemChanged, notifyItemRangeInserted, notifyItemRangeRemoved, notifyDataSetChanged
+
 
 */
 
@@ -60,6 +68,7 @@ public class adapter extends RecyclerView.Adapter<MyViewHolder> {
 	public void onBindViewHolder(MyViewHolder holder, int position) {
 		Landscape currentObj = mData.get(position);
 		holder.setData(currentObj, position);
+		holder.setListeners(); // custom method to apply click listeners to part of the views 
 	}
 
 	// returns the number of rows in the recycler view 
@@ -68,10 +77,29 @@ public class adapter extends RecyclerView.Adapter<MyViewHolder> {
 		return mData.size();
 	}
 
+	// removes item from list
+	public void removeItem(int position) {
+		mData.remove(position); // remove data from list at position parameter
+		notifyItemRemoved(position); // removes data from recycler view
+		notifyItemRangeChanged(position, mData.size()); // updates the adapter the new data size
+	}
+
+	// adds item to list
+	public void addItem(int position, Landscape landscape) {
+		mData.add(position, landscape); // adds new item to list
+		notifyItemInserted(position); // notifies view that item has been added 
+		notifyItemRangeChanged(position, mData().size());
+	}
+
+
+
+
+
 	// custom class that binds the data to the view 
 	// initialzes the text views and is called in the onBindViewHolder method 
 	// sets the data for each card view 
-	class MyViewHolder extends RecyclerView.ViewHolder {
+	// implementing View.OnClickListener adds click events to each row 
+	class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 		
 		TextView title;
 		ImageView imgThumb, imgDelete, imgAdd;
@@ -88,6 +116,21 @@ public class adapter extends RecyclerView.Adapter<MyViewHolder> {
 		public void setData(Landscape current, int position) {
 			this.title.setText(current.getTitle());
 			// set the data methods for the rest of the fields
+		}
+
+		// sets methods for on click listeners
+		public void setListeners() {
+			// sets click listener to imgDelete button with viewHolder context as parameter
+			imgDelete.setOnClickListener(MyViewHolder.this);
+		}
+
+
+		// overrides default click function to create custom functions for buttons
+		@Override
+		public void onClick(View v) {
+			// code runs when certain button gets clicked 
+			// to check the id of the clicked item
+			v.getId();
 		}
 
 	}
